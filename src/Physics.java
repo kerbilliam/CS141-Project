@@ -5,29 +5,55 @@
  * 
  * New Velocity
  *  V = Vo + at
+ * 
+ *  THIS CLASS REFERENCES AppTest FOR ITS MAIN CLASS
  */
 import java.awt.*;
 
 public class Physics {
-    public void phys(DrawingPanel panel, Graphics2D g, double angle, double velocity, int height, int width) {
-        double angleRAD = angle * Math.PI / 180;
-        double rx = 0, ry = 0; // initial position
-        double Vx = velocity * Math.cos(angleRAD); // initial x velocity
-        double Vy = velocity * Math.sin(angleRAD); // initial y velocity
-        double G = -9.81; // gravity = 9.81 m/s
-        double deltaT = 0.5; // how often calculation is made.
-        int dotSize = 7;
+    public static final double G = -9.8; // gravity = 9.81 m/s
 
-        while (rx < width && ry < height) {
+    static double inputVelocity;
+    static double inputAngle;
+    static double deltaT; // how often calculation is made.
+    static byte dotSize;
+    static double rx, ry;
+    static double Vx, Vy;
+
+
+
+    public static void play(DrawingPanel panel, Graphics2D g) {
+        double angleRAD = inputAngle * Math.PI / 180;
+        rx = 0; // reset x position
+        ry = 0; // reset y position
+        Vx = inputVelocity * Math.cos(angleRAD); // initial x velocity
+        Vy = inputVelocity * Math.sin(angleRAD); // initial y velocity
+    
+
+        while (rx < AppTest.width && ry < AppTest.height) {
             panel.sleep(50);
+            g.fillOval((int)rx, AppTest.height - (int)ry, dotSize, dotSize);
 
             rx += Vx * deltaT;
             ry += Vy * deltaT + (G * Math.pow(deltaT, 2)) / 2;
-
-            g.fillOval((int)rx, height - (int)ry, dotSize, dotSize);
-
             Vy += G * deltaT; // update vertical velocity do to G
         }
 
+    }
+
+    public static void tradjectTest(DrawingPanel panel, Graphics2D g) {
+        double angleRAD = inputAngle * Math.PI / 180;
+        rx = 0; // reset x position
+        ry = 0; // reset y position
+        Vx = inputVelocity * Math.cos(angleRAD); // initial x velocity
+        Vy = inputVelocity * Math.sin(angleRAD); // initial y velocity
+        
+        for (byte i = 0; i < 10; i++) {
+            g.fillOval((int)rx, AppTest.height - (int)ry, dotSize, dotSize);
+
+            rx += Vx * deltaT;
+            ry += Vy * deltaT + (G * Math.pow(deltaT, 2)) / 2;
+            Vy += G * deltaT; // update vertical velocity do to G
+        }
     }
 }
