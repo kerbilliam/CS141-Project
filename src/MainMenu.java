@@ -1,6 +1,36 @@
+import java.io.FileNotFoundException;
 import java.util.*;
+import utils.*;
 
 public class MainMenu {
+    //creates an array which would store the current user's save data
+    public static String[] currentUserData = new String[5];
+
+    public static String userLogin(Scanner console) throws FileNotFoundException{
+        boolean userLogin = false;
+        String userName = "";
+
+        while(!userLogin){
+                System.out.println("Enter username: ");
+                userName = console.nextLine();
+                
+                //if userName in userNames imported from a file then assign the the list by [0]
+                //if not create a new list with the username 
+                currentUserData[0] = userName;
+                currentUserData[1] = "Incomplete";  //level 1
+                currentUserData[2] = "Incomplete";  //level 2
+                currentUserData[3] = "Incomplete";  //level 3
+                currentUserData[4] = "Incomplete";  //level 4
+
+                fileModule.writeToFile(currentUserData);
+
+                userLogin = true;
+    
+        }
+
+        return userName;
+    }
+
     public static void levelSelection(int level){
         if (level == 1){
             //code to run drawing panel for level 1 with its engine 
@@ -57,20 +87,23 @@ public class MainMenu {
         
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         //variables
         boolean exitProgram = false;
         String commandMenu = """
         Command Menu
         1: Levels
         2: Leaderboard
-        3: Export score
-        4: Help
-        5: Exit 
+        3: Help
+        4: Exit 
         """;
 
         //objects
         Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
+
+        //test
+        userLogin(console);
+
 
         System.out.println("\nWelcome to Angry Birds Clone!\n" + commandMenu);
         //main menu loop
