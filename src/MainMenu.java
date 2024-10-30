@@ -4,25 +4,28 @@ import utils.*;
 
 public class MainMenu {
     //creates an array which would store the current user's save data
-    public static String[] currentUserData = new String[5];
+    public static String[] currentSaveFile = new String[5];
+    public static List<String[]> saveFiles = new ArrayList<String[]>();
 
     public static String userLogin(Scanner console) throws FileNotFoundException{
         boolean userLogin = false;
         String userName = "";
 
         while(!userLogin){
-                System.out.println("Enter username: ");
+                System.out.print("Enter username: ");
                 userName = console.nextLine();
                 
+                saveFiles = fileModule.readFromFile();
                 //if userName in userNames imported from a file then assign the the list by [0]
-                //if not create a new list with the username 
-                currentUserData[0] = userName;
-                currentUserData[1] = "Incomplete";  //level 1
-                currentUserData[2] = "Incomplete";  //level 2
-                currentUserData[3] = "Incomplete";  //level 3
-                currentUserData[4] = "Incomplete";  //level 4
-
-                fileModule.writeToFile(currentUserData);
+                
+                //if cant find create a new array with the username and store it in the file
+                currentSaveFile[0] = userName;
+                currentSaveFile[1] = "Incomplete";  //level 1
+                currentSaveFile[2] = "Incomplete";  //level 2
+                currentSaveFile[3] = "Incomplete";  //level 3
+                currentSaveFile[4] = "Incomplete";  //level 4
+                //going to move this later to the part of the code where user exits the app so if user completes a level it saves that
+                fileModule.writeToFile(currentSaveFile);
 
                 userLogin = true;
     
