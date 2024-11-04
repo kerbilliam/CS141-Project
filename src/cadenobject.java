@@ -1,27 +1,27 @@
 import java.awt.*;
 public class cadenobject {
-public static final int WIDTH = 800;
-public static final int HEIGHT = 800;
+public static final int WIDTH = 500;
+public static final int HEIGHT = 500;
 
     public static void main(String[] args){
-//        grass();
-//        spinWheel();
-        drawSword();
+        DrawingPanel panel = new DrawingPanel(WIDTH,HEIGHT);
+        grass(panel);
+//        spinWheel(panel);
+//        drawSword(panel);
+        face(panel);
     }
-    public static void grass(){
-DrawingPanel panel = new DrawingPanel(WIDTH,HEIGHT);
-Graphics g = panel.getGraphics();
+    public static void grass(DrawingPanel panel){
+        Graphics g = panel.getGraphics();
 
         g.setColor(new Color(139, 69, 19)); // Brown color for dirt
         g.fillRect(0, 750, 800, 50);
         // Draw the "grass" on top of the dirt
         g.setColor(Color.GREEN);            // Green color for grass
-        g.fillRect(0, 730, 800, 20);
+        g.fillRect(0, 750, 800, 20);
     }
 
-    public static void spinWheel() {
+    public static void spinWheel(DrawingPanel panel) {
         // Set up the drawing panel and graphics
-        DrawingPanel panel = new DrawingPanel(800, 800);
         Graphics g = panel.getGraphics();
 
         // Wheel parameters
@@ -60,9 +60,8 @@ Graphics g = panel.getGraphics();
         }
 
     }
-    public static void drawSword() {
+    public static void drawSword(DrawingPanel panel) {
         // Set up the drawing panel and graphics
-        DrawingPanel panel = new DrawingPanel(800, 800);
         Graphics g = panel.getGraphics();
 
         // Sword parameters
@@ -99,6 +98,56 @@ Graphics g = panel.getGraphics();
 
             // Delay for the animation speed
             panel.sleep(30);
+        }
+    }
+
+    public static void face(DrawingPanel panel){
+        Graphics g = panel.getGraphics();
+        int width = 100;
+        int height = 100;
+        int x = WIDTH / 2 - width / 2;
+        int y = HEIGHT / 2 - height / 2;
+
+        int eyeWidth = 20;
+        int eyeHeight = 20;
+        int eyeX = (int)(x + (width * .25) - eyeWidth / 2);
+        int eyeY = y + (height / 2) - eyeHeight / 2;
+
+        int RighteyeX= (int)(x + (width * .75) - eyeWidth / 2.0);
+
+        boolean blinking = false;
+        int counter = 0;
+        Color eyeColor = Color.WHITE;
+        while(true){
+
+            g.setColor(Color.BLACK);
+            g.fillOval(x,y,width,height);
+
+            g.setColor(eyeColor);
+            g.fillOval(eyeX ,eyeY , eyeWidth, eyeHeight );
+
+            g.setColor(eyeColor);
+            g.fillOval(RighteyeX,eyeY , eyeWidth, eyeHeight );
+
+            g.setColor(Color.WHITE);
+            g.fillRect(225, 275, 50,10);
+
+            counter ++;
+            if(counter >= 10) {
+                blinking = true;
+                counter = 0;
+            } else {
+                blinking = false;
+            }
+
+            if(blinking) {
+                eyeColor = Color.BLACK;
+            } else {
+                eyeColor = Color.WHITE;
+            }
+
+            panel.sleep(30);
+
         }
     }
 }
