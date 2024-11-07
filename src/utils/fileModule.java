@@ -5,16 +5,16 @@ import java.util.*;
 public class fileModule {
 	
 	public static void writeToFile(String[] saveFile) throws FileNotFoundException{
-		PrintStream output = new PrintStream(new File("save_files.txt"));
+		PrintStream output = new PrintStream(new FileOutputStream("save_files.txt", true));//appends new save files instead of overwriting them.
 		for (int i = 0; i < saveFile.length; i++){
-			if (i == 5){
-				output.print(saveFile[i]); //stores the last element without space
+			if (i == 8){
+				output.print(saveFile[i]+"\n"); //stores the last element without space
+			} else{
+				output.print(saveFile[i] + " ");
 			}
-
-			output.print(saveFile[i] + " ");
+			
 		}
 
-		output.println();
 		output.close();
 	}
 

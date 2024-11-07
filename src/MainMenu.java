@@ -4,35 +4,54 @@ import utils.*;
 
 public class MainMenu {
     //creates an array which would store the current user's save data
-    public static String[] currentSaveFile = new String[5];
+    public static String[] currentSaveFile = new String[9];
     public static List<String[]> saveFiles = new ArrayList<String[]>();
 
-    public static String userLogin(Scanner console) throws FileNotFoundException{
+    public static void userLogin(Scanner console) throws FileNotFoundException{
         boolean userLogin = false;
         String userName = "";
 
         while(!userLogin){
                 System.out.print("Enter username: ");
                 userName = console.nextLine();
+                saveFiles = fileModule.readFromFile(); //gets save files
+                boolean saveFileFound = false;
+                while (!saveFileFound) {
+                    String[] tempSaveFile = new String[9]; //used to unpack each element of the list to check for the file name
+                    for (int i = 0; i < saveFiles.size(); i++){
+                        tempSaveFile = saveFiles.get(i);
+                        if (tempSaveFile[0].equals(userName)){//if save file with user name exists
+                            System.out.println("Save file found. Importing data...");
+                            currentSaveFile = saveFiles.get(i);
+                            System.out.println("Save file imported succesfully.\n");
+                            saveFileFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!saveFileFound){
+                        System.out.println("Save file wasn't found. Creating new save file...");
+                        //if cant find create a new array with the username and store it in the file
+                        currentSaveFile[0] = userName;
+                        currentSaveFile[1] = "Incomplete";  //level 1
+                        currentSaveFile[2] = "0";   //level 1 score
+                        currentSaveFile[3] = "Incomplete";  //level 2
+                        currentSaveFile[4] = "0"; //level 2 score
+                        currentSaveFile[5] = "Incomplete";  //level 3
+                        currentSaveFile[6] = "0"; //level 3 score
+                        currentSaveFile[7] = "Incomplete";  //level 4
+                        currentSaveFile[8] = "0"; //level 4 score
+                        saveFileFound = true; //stops the loop
+                        System.out.println("Save file created succesfully.");
+                        }
+                    }
+                userLogin = true;//stops the login loop
+                }
                 
-                saveFiles = fileModule.readFromFile();
-                //if userName in userNames imported from a file then assign the the list by [0]
                 
-                //if cant find create a new array with the username and store it in the file
-                currentSaveFile[0] = userName;
-                currentSaveFile[1] = "Incomplete";  //level 1
-                currentSaveFile[2] = "Incomplete";  //level 2
-                currentSaveFile[3] = "Incomplete";  //level 3
-                currentSaveFile[4] = "Incomplete";  //level 4
                 //going to move this later to the part of the code where user exits the app so if user completes a level it saves that
                 fileModule.writeToFile(currentSaveFile);
-
-                userLogin = true;
-    
         }
-
-        return userName;
-    }
 
     public static void levelSelection(int level){
         if (level == 1){
@@ -91,7 +110,7 @@ public class MainMenu {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        //variables
+        //variablesd
         boolean exitProgram = false;
         String commandMenu = """
         Command Menu
