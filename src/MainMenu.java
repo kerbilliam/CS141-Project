@@ -28,7 +28,7 @@ public class MainMenu {
                             break;
                         }
                     }
-
+                    
                     if (!saveFileFound){
                         System.out.println("Save file wasn't found. Creating new save file...");
                         //if cant find create a new array with the username and store it in the file
@@ -49,8 +49,7 @@ public class MainMenu {
                 }
                 
                 
-                //going to move this later to the part of the code where user exits the app so if user completes a level it saves that
-                fileModule.writeToFile(currentSaveFile);
+                
         }
 
     public static void levelSelection(int level){
@@ -117,15 +116,17 @@ public class MainMenu {
         1: Levels
         2: Leaderboard
         3: Help
-        4: Exit 
+        4: Exit
         """;
-
+        String helpCommand = """     
+        Help Menu Info
+        Levels: opens a menu page to select a level. When you select a level the app launches drawing panel and prompts you to enter angle and velocity.
+        """;
         //objects
         Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
 
         //test
         userLogin(console);
-
 
         System.out.println("\nWelcome to Angry Birds Clone!\n" + commandMenu);
         //main menu loop
@@ -144,16 +145,16 @@ public class MainMenu {
                     System.out.println("none");
                 }
 
-                else if (user_input == 3){//export scores
-                    System.out.println("none");
+                else if (user_input == 3){//help 
+                    System.out.println("\n" + helpCommand);
                 }
 
-                else if (user_input == 4){//help 
-                    System.out.println("\n" + commandMenu);
-                }
-
-                else if (user_input == 5){//quit app
+                else if (user_input == 4){//quit app
                     System.out.println("Thanks for playing!");
+                    //if a file exists we overwrite it in the text file to store new data
+                    //function to do that
+                    //if a file doesn't exist we append it to the text file
+                    fileModule.appendToFile(currentSaveFile);
                     exitProgram = true;
                 }
                 else{//for integer which are outside command numbers bound

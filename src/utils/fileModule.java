@@ -4,8 +4,8 @@ import java.util.*;
 
 public class fileModule {
 	
-	public static void writeToFile(String[] saveFile) throws FileNotFoundException{
-		PrintStream output = new PrintStream(new FileOutputStream("save_files.txt", true));//appends new save files instead of overwriting them.
+	public static void appendToFile(String[] saveFile) throws FileNotFoundException{
+		PrintStream output = new PrintStream(new FileOutputStream("save_files.txt", true));//appends a new save file.
 		for (int i = 0; i < saveFile.length; i++){
 			if (i == 8){
 				output.print(saveFile[i]+"\n"); //stores the last element without space
@@ -17,6 +17,8 @@ public class fileModule {
 
 		output.close();
 	}
+
+	//function to overwrite a specific line in the .txt file 
 
 	public static  List<String[]> readFromFile() throws FileNotFoundException{
 		//list that stores arrays
