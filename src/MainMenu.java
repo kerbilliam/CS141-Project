@@ -6,23 +6,26 @@ public class MainMenu {
     //creates an array which would store the current user's save data
     public static String[] currentSaveFile = new String[9];
     public static List<String[]> saveFiles = new ArrayList<String[]>();
-
-    public static void userLogin(Scanner console) throws FileNotFoundException{
-        boolean userLogin = false;
-        String userName = "";
-
-        while(!userLogin){
-                System.out.print("Enter username: ");
-                userName = console.nextLine();
-                saveFiles = fileModule.readFromFile(); //gets save files
-                boolean saveFileFound = false;
-                while (!saveFileFound) {
-                    String[] tempSaveFile = new String[9]; //used to unpack each element of the list to check for the file name
-                    for (int i = 0; i < saveFiles.size(); i++){
-                        tempSaveFile = saveFiles.get(i);
-                        if (tempSaveFile[0].equals(userName)){//if save file with user name exists
-                            System.out.println("Save file found. Importing data...");
-                            currentSaveFile = saveFiles.get(i);
+    //position of the array save in saves file 
+    public static int saveFilePosition = -1;
+    
+        public static void userLogin(Scanner console) throws FileNotFoundException{
+            boolean userLogin = false;
+            String userName = "";
+    
+            while(!userLogin){
+                    System.out.print("Enter username: ");
+                    userName = console.nextLine();
+                    saveFiles = fileModule.readFromFile(); //gets save files
+                    boolean saveFileFound = false;
+                    while (!saveFileFound) {
+                        String[] tempSaveFile = new String[9]; //used to unpack each element of the list to check for the file name
+                        for (int i = 0; i < saveFiles.size(); i++){
+                            tempSaveFile = saveFiles.get(i);
+                            if (tempSaveFile[0].equals(userName)){//if save file with user name exists
+                                System.out.println("Save file found. Importing data...");
+                                currentSaveFile = saveFiles.get(i);//assigns the save file data(array)
+                                saveFilePosition = i; //asigns the line number of the save file, so it can be overwritten later to save user's progress when they exit the app
                             System.out.println("Save file imported succesfully.\n");
                             saveFileFound = true;
                             break;
@@ -114,10 +117,11 @@ public class MainMenu {
         String commandMenu = """
         Command Menu
         1: Levels
-        2: Leaderboard
+        2: Leaderboard 
         3: Help
         4: Exit
         """;
+        //Why do we need export? Is it essential? what does it add to the project?
         String helpCommand = """     
         Help Menu Info
         Levels: opens a menu page to select a level. When you select a level the app launches drawing panel and prompts you to enter angle and velocity.
@@ -151,10 +155,14 @@ public class MainMenu {
 
                 else if (user_input == 4){//quit app
                     System.out.println("Thanks for playing!");
-                    //if a file exists we overwrite it in the text file to store new data
-                    //function to do that
-                    //if a file doesn't exist we append it to the text file
-                    fileModule.appendToFile(currentSaveFile);
+                    if(saveFilePosition == -1){//the save file was created during this app instance so we append it
+                        fileModule.appendToFile(currentSaveFile);
+                    }else{//the save file was imported, so we must overwrite the old save to store user's progress 
+                        //currentSaveFile[8] = "Working"; test
+                        saveFiles.set(saveFilePosition, currentSaveFile);
+                        fileModule.overWriteFile(saveFiles);
+                    }
+                    
                     exitProgram = true;
                 }
                 else{//for integer which are outside command numbers bound
