@@ -5,7 +5,7 @@ public static final int HEIGHT = 500;
 
     public static void main(String[] args){
         DrawingPanel panel = new DrawingPanel(WIDTH,HEIGHT);
-        grass(panel);
+//        grass(panel);
 //        spinWheel(panel);
 //        drawSword(panel);
         face(panel);
@@ -146,7 +146,7 @@ public static final int HEIGHT = 500;
                 eyeColor = Color.WHITE;
             }
 
-            panel.sleep(30);
+            panel.sleep(60);
 
         }
     }
