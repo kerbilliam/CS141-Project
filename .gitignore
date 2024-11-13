@@ -1,2 +1,3 @@
 #ignorse binary files and compiled classes
 bin/
+.vscode
