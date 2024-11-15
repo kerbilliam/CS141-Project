@@ -5,6 +5,10 @@ import java.util.*;
 public class fileModule {
 	
 	public static void appendToFile(String[] saveFile) throws FileNotFoundException{
+		/**
+		 * Adds a new save data instance to the file.
+		 * @param saveFile a string array which represent a new save data.
+		 */
 		PrintStream output = new PrintStream(new FileOutputStream("save_files.txt", true));//appends a new save file.
 		for (int i = 0; i < saveFile.length; i++){
 			if (i == 8){
@@ -19,6 +23,10 @@ public class fileModule {
 	}
 
 	public static void overWriteFile(List<String[]> saveFiles) throws FileNotFoundException{
+		/**
+		 * Overwrites old save data.
+		 * @param saveFiles a list of string arrays which represent save datas.
+		 */
 		//this functions overwrites the whole save file. It's inefficient but works.
 		PrintStream output = new PrintStream(new File("save_files.txt"));
 		for(int i = 0; i <saveFiles.size(); i++){
@@ -39,6 +47,10 @@ public class fileModule {
 	}
 
 	public static  List<String[]> readFromFile() throws FileNotFoundException{
+		/**
+		 * Reads the save data file and returns save datas.
+		 * @return saveFiles which a list that contains string Arrays that represent the save datas.
+		 */
 		//list that stores arrays
 		List<String[]> saveFiles = new ArrayList<String[]>();
 

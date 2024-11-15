@@ -10,22 +10,25 @@ public class MainMenu {
     public static int saveFilePosition = -1;
     
         public static void userLogin(Scanner console) throws FileNotFoundException{
+            /**
+             * Prompts the user to enter a username and if a save data with such a name exists imports it. If not creates a new save data instance.
+             */
             boolean userLogin = false;
             String userName = "";
     
             while(!userLogin){
                     System.out.print("Enter username: ");
                     userName = console.nextLine();
-                    saveFiles = fileModule.readFromFile(); //gets save files
+                    saveFiles = fileModule.readFromFile(); //gets save datas
                     boolean saveFileFound = false;
                     while (!saveFileFound) {
-                        String[] tempSaveFile = new String[9]; //used to unpack each element of the list to check for the file name
+                        String[] tempSaveFile = new String[9]; //used to unpack each element of the list to check for the save data name
                         for (int i = 0; i < saveFiles.size(); i++){
                             tempSaveFile = saveFiles.get(i);
-                            if (tempSaveFile[0].equals(userName)){//if save file with user name exists
+                            if (tempSaveFile[0].equals(userName)){//if save data with user name exists
                                 System.out.println("Save file found. Importing data...");
                                 currentSaveFile = saveFiles.get(i);//assigns the save file data(array)
-                                saveFilePosition = i; //asigns the line number of the save file, so it can be overwritten later to save user's progress when they exit the app
+                                saveFilePosition = i; //asigns the line number of the save data, so it can be overwritten later to save user's progress when they exit the app
                             System.out.println("Save file imported succesfully.\n");
                             saveFileFound = true;
                             break;
@@ -56,6 +59,9 @@ public class MainMenu {
         }
 
     public static void levelSelection(int level){
+        /**
+         * Starts a level based on parameter value given.
+         */
         if (level == 1){
             //code to run drawing panel for level 1 with its engine 
         }
@@ -71,6 +77,9 @@ public class MainMenu {
     }
 
     public static void levelMenu(Scanner console) {
+        /**
+         * Shows the  user level menu commands and prompts them for input.
+         */
         //variables
         boolean exitLevelMenu = false;
         String levelMenu = """
@@ -112,7 +121,10 @@ public class MainMenu {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        //variablesd
+        /**
+         * Main method which runs the app.
+         */
+        //variables
         boolean exitProgram = false;
         String commandMenu = """
         Command Menu
@@ -129,7 +141,7 @@ public class MainMenu {
         //objects
         Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
 
-        //test
+        //User login prompt
         userLogin(console);
 
         System.out.println("\nWelcome to Angry Birds Clone!\n" + commandMenu);
@@ -155,10 +167,9 @@ public class MainMenu {
 
                 else if (user_input == 4){//quit app
                     System.out.println("Thanks for playing!");
-                    if(saveFilePosition == -1){//the save file was created during this app instance so we append it
+                    if(saveFilePosition == -1){//the save data was created during this app instance so we append it
                         fileModule.appendToFile(currentSaveFile);
-                    }else{//the save file was imported, so we must overwrite the old save to store user's progress 
-                        //currentSaveFile[8] = "Working"; test
+                    }else{//the save data was imported, so we must overwrite the old save data to store user's progress 
                         saveFiles.set(saveFilePosition, currentSaveFile);
                         fileModule.overWriteFile(saveFiles);
                     }
