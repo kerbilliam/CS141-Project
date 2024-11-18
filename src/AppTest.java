@@ -10,7 +10,6 @@ public class AppTest {
     public static void main(String[] args) throws Exception {
         Physics.inputAngle = 45; // in degrees
         Physics.inputVelocity = 80; // in meters(pixles?) per second
-        Physics.deltaT = 0.5; // How often calculation is made
         Physics.dotSize = 7;
         // Scanner console = new Scanner(System.in);
         DrawingPanel panel = new DrawingPanel(width, height);

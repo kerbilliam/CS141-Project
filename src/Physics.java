@@ -11,11 +11,11 @@
 import java.awt.*;
 
 public class Physics {
-    public static final double G = -9.8; // gravity = 9.81 m/s
+    private static final double G = -9.8; // gravity = 9.81 m/s
+    private static final double deltaT = 0.5; // how often cacluation is made.
 
     static double inputVelocity;
     static double inputAngle;
-    static double deltaT; // how often calculation is made.
     static byte dotSize;
     static double rx, ry;
     static double Vx, Vy;
