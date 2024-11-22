@@ -56,4 +56,12 @@ public class Physics {
             Vy += G * deltaT; // update vertical velocity do to G
         }
     }
+
+    private static void collision() {
+        // check pixle color
+        // check sourrounding pixle colors if shape is hollow
+        // find the angle of slope
+        // use angle to find normal
+        // adjust velocity accoringly
+    }
 }
