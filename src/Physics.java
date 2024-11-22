@@ -57,11 +57,19 @@ public class Physics {
         }
     }
 
-    private static void collision() {
+    private static void findColAngle() {
         // check pixle color
         // check sourrounding pixle colors if shape is hollow
         // find the angle of slope
         // use angle to find normal
         // adjust velocity accoringly
+    }
+
+    private static void bounce(double angle) { // work in progress
+        double vxTemp = Vx;
+        double vyTemp = Vy;
+
+        Vx = (vxTemp * Math.sin(angle)) + (vyTemp * Math.sin(angle));
+        Vy = (vyTemp * Math.cos(angle)) + (vxTemp * Math.cos(angle));
     }
 }
