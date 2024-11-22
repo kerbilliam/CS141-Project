@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class WorkInProgress {
 
-    public static void main(String[] args) {
+    public static void level1() {
         DrawingPanel panel = new DrawingPanel(400, 400); // panel size
         Graphics g = panel.getGraphics();
 
@@ -89,5 +89,9 @@ class Rectangle{
     }
     public void setColor(Color color) {
         this.color = color;
+}
+
+public static void animation() {
+    
 }
 }

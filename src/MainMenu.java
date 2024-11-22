@@ -64,15 +64,19 @@ public class MainMenu {
          */
         if (level == 1){
             //code to run drawing panel for level 1 with its engine 
+            WorkInProgress.level1();
         }
         else if (level == 2){
             //code to run drawing panel for level 2 with its engine 
+            WorkInProgress.level2();
         }
         else if (level == 3){
             //code to run drawing panel for level 3 with its engine 
+            WorkInProgress.level3();
         }
         else if (level == 4){
             //code to run drawing panel for level 4 with its engine 
+            WorkInProgress.level4();
         }
     }
 
