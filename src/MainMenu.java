@@ -2,8 +2,7 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import utils.*;
 
-public class MainMenu {
-    //public Scanner object for whole module 
+public class MainMenu {    
     public static Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
     //creates an array which would store the current user's save data
     public static String[] currentSaveFile = new String[9];
@@ -77,6 +76,7 @@ public class MainMenu {
                     if (confirmation.equals("yes")){
                         //draw level
                         //stops user in level loop
+                        //resets scanner to clears its buffer
                         System.out.println();
                         userInLevelLoop = false;
                         break;
@@ -104,19 +104,15 @@ public class MainMenu {
         if (level == 1){           
             //code to run drawing panel for level 1 with its engine 
             runLevel();
-            levelMenu(); //when user exits a level show them the level menu
         }
         else if (level == 2){
             //code to run drawing panel for level 2 with its engine 
-            levelMenu(); //when user exits a level show them the level menu
         }
         else if (level == 3){
             //code to run drawing panel for level 3 with its engine 
-            levelMenu(); //when user exits a level show them the level menu
         }
         else if (level == 4){
             //code to run drawing panel for level 4 with its engine 
-            levelMenu(); //when user exits a level show them the level menu
         }
     }
 
@@ -125,6 +121,7 @@ public class MainMenu {
          * Shows the  user level menu commands and prompts them for input.
          */
         //variables
+        
         boolean exitLevelMenu = false;
         String levelMenu = """
         Levels Available
@@ -150,6 +147,7 @@ public class MainMenu {
                 else if (user_input == 1 || user_input == 2 || user_input == 3 || user_input == 4 ){
                     System.out.println("Selected Level " + user_input);  
                     levelSelection(user_input);
+                    System.out.println(levelMenu);
                 }
 
                 else{//for integer which are outside command numbers bound
@@ -158,12 +156,13 @@ public class MainMenu {
             
             } catch (InputMismatchException e) {//Scanner built-in exception 
                 System.out.println("Invalid input type. Please enter an integer.");
-                console.nextLine();//I had to change to nextLine because the buffer in console holds the invalid inputs in a line and with just next() it would only delete one token from the buffer line, 
+                console.nextLine();//need this to prevent infinite loop. 
+                //I had to change to nextLine because the buffer in console holds the invalid inputs in a line and with just next() it would only delete one token from the buffer line, 
                 // so if there was two invalids then after next() there would be another one in the line that needs to be deleted before the user can exit the menu, causing them to enter exit command multiple times.
                 //With nextLine() the whole buffer line get cleaned, so user only need to enter exit command one time.
-            }          
+                         
+            }
         }
-        
     }
 
     public static void main(String[] args) throws FileNotFoundException {
