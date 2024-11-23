@@ -92,7 +92,7 @@ public class MainMenu {
             
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input type for velocity or angle. Please enter a numeric value.");
-                console.next();//need this to prevent infinite loop
+                console.nextLine();//need this to prevent infinite loop. 
             }
         }
     }
@@ -141,7 +141,7 @@ public class MainMenu {
             try {
                 System.out.print("Enter the level command number: ");
                 int user_input = console.nextInt();
-                
+
                 if (user_input == 5){
                     System.out.println("Exiting levels menu\n");
                     exitLevelMenu = true;
@@ -158,7 +158,9 @@ public class MainMenu {
             
             } catch (InputMismatchException e) {//Scanner built-in exception 
                 System.out.println("Invalid input type. Please enter an integer.");
-                console.next();//need this to prevent infinite loop
+                console.nextLine();//I had to change to nextLine because the buffer in console holds the invalid inputs in a line and with just next() it would only delete one token from the buffer line, 
+                // so if there was two invalids then after next() there would be another one in the line that needs to be deleted before the user can exit the menu, causing them to enter exit command multiple times.
+                //With nextLine() the whole buffer line get cleaned, so user only need to enter exit command one time.
             }          
         }
         
@@ -227,7 +229,7 @@ public class MainMenu {
             
             } catch (InputMismatchException e) {//Scanner built-in exception 
                 System.out.println("Invalid input type. Please enter an integer.");
-                console.next();//need this to prevent infinite loop
+                console.nextLine();//need this to prevent infinite loop
             }          
         }
         //closes console to prevent leakage
