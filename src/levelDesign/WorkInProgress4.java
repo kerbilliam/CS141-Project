@@ -3,7 +3,7 @@ package levelDesign;
 import java.awt.*;
 
 public class WorkInProgress4 {
-    public static void main(String[] args) {
+    public static void levelFour() {
         DrawingPanel panel = new DrawingPanel(800, 400); // panel size
         Graphics g = panel.getGraphics();
 

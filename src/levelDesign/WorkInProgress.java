@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class WorkInProgress {
 
-    public static void main(String[] args) {
+    public static void levelOne() {
         DrawingPanel panel = new DrawingPanel(800, 400); // panel size
         Graphics g = panel.getGraphics();
 
