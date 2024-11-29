@@ -4,6 +4,7 @@ import java.util.*;
 import levelDesign.WorkInProgress;
 import physics.Physics;
 import utils.*;
+import levelDesign.*;
 
 public class MainMenu {    
     public static Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
@@ -121,21 +122,33 @@ public class MainMenu {
         /**
          * Starts a level based on parameter value given.
          */
+<<<<<<< HEAD
         if (level == 1){           
             //code to run drawing panel for level 1 with its engine
             // need to copy working panel and graphics to physics
             WorkInProgress.level1();
             Physics.workingPanel = WorkInProgress.panel;
             Physics.workingGraphics = WorkInProgress.g;
+=======
+        if (level == 1){
+            WorkInProgress.levelOne();
+            //code to run drawing panel for level 1 with its engine 
+>>>>>>> 9c752f475cff754178f5acbcb38efa999a5f752b
             runLevel();
         }
         else if (level == 2){
+            WorkInProgress2.levelTwo();
+            runLevel();
             //code to run drawing panel for level 2 with its engine 
         }
         else if (level == 3){
+            WorkInprogress3.levelThree();
+            runLevel();
             //code to run drawing panel for level 3 with its engine 
         }
         else if (level == 4){
+            WorkInProgress4.levelFour();
+            runLevel();
             //code to run drawing panel for level 4 with its engine 
         }
     }
