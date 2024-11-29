@@ -122,18 +122,12 @@ public class MainMenu {
         /**
          * Starts a level based on parameter value given.
          */
-<<<<<<< HEAD
         if (level == 1){           
             //code to run drawing panel for level 1 with its engine
             // need to copy working panel and graphics to physics
             WorkInProgress.level1();
             Physics.workingPanel = WorkInProgress.panel;
             Physics.workingGraphics = WorkInProgress.g;
-=======
-        if (level == 1){
-            WorkInProgress.levelOne();
-            //code to run drawing panel for level 1 with its engine 
->>>>>>> 9c752f475cff754178f5acbcb38efa999a5f752b
             runLevel();
         }
         else if (level == 2){
