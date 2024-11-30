@@ -1,9 +1,17 @@
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
+import javax.sound.sampled.*;
+
 
 import physics.Physics;
 import utils.*;
 import levelDesign.*;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class MainMenu {    
     public static Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
@@ -208,7 +216,15 @@ public class MainMenu {
                 return true;
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+        // audio!!
+        File file = new File("src/AudioANDfailScreen/Angry Birds Theme Song.wav");
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
         /**
          * Main method which runs the app.
          */
