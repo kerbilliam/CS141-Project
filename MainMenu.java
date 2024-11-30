@@ -117,10 +117,10 @@ public class MainMenu {
                         System.out.println("Invalid confirmation command. Try again.");
                     }
                 }
-            
+
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input type for velocity or angle. Please enter a numeric value.");
-                console.nextLine();//need this to prevent infinite loop. 
+                console.nextLine();//need this to prevent infinite loop.
             }
         }
 
@@ -211,7 +211,16 @@ public class MainMenu {
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
         clip.open(audioStream);
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        // Add a line listener to restart looping
+        clip.addLineListener(event -> {
+            if (event.getType() == LineEvent.Type.STOP) {
+                clip.setFramePosition(0);
+                clip.start();
+            }
+        });
+
+        clip.start();
         /**
          * Main method which runs the app.
          */
