@@ -1,7 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.*;
 
-import levelDesign.WorkInProgress;
 import physics.Physics;
 import utils.*;
 import levelDesign.*;
@@ -70,83 +69,7 @@ public class MainMenu {
             userLogin = true;//stops the login loop
             }                        
     }
-    //going to need to put a variable in the () for a specific level
-    public static void runLevel() {
-        boolean userInLevelLoop = true;
-        while (userInLevelLoop) {
-            try {
-                System.out.print("Enter angle: ");
-                Physics.inputAngle = console.nextDouble();
-                System.out.print("Enter velocity: ");
-                Physics.inputVelocity = console.nextDouble();
-
-                //draws panel and projected trajactory
-                Physics.workingPanel.clear();
-                if (Physics.currentLevel == 1) WorkInProgress.level1();
-                Physics.tradjectTest();
-
-                //loop for confirmation
-                while (true){
-                    System.out.print("Confirm this trajectory? Yes/No: ");
-                    String confirmation = (console.next().toLowerCase());
-                    if (confirmation.equals("yes")){
-                        //draw level
-                        Physics.workingPanel.clear();
-                        if (Physics.currentLevel == 1) WorkInProgress.level1();
-
-                        Physics.play();
-                        //stops user in level loop
-                        //resets scanner to clears its buffer
-                        System.out.println();
-                        userInLevelLoop = false;
-                        break;
-                    }else if (confirmation.equals("no")){
-                        //loop back
-                        System.out.println("Alright, lets try again.");
-                        break;
-                    }
-                    else{
-                        System.out.println("Invalid confirmation command. Try again.");
-                    }
-                }
-            
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input type for velocity or angle. Please enter a numeric value.");
-                console.nextLine();//need this to prevent infinite loop. 
-            }
-        }
-
-    }
-
-    public static void levelSelection(int level){
-        /**
-         * Starts a level based on parameter value given.
-         */
-        if (level == 1){           
-            //code to run drawing panel for level 1 with its engine
-            // need to copy working panel and graphics to physics
-            WorkInProgress.level1();
-            Physics.workingPanel = WorkInProgress.panel;
-            Physics.workingGraphics = WorkInProgress.g;
-            runLevel();
-        }
-        else if (level == 2){
-            WorkInProgress2.levelTwo();
-            runLevel();
-            //code to run drawing panel for level 2 with its engine 
-        }
-        else if (level == 3){
-            WorkInprogress3.levelThree();
-            runLevel();
-            //code to run drawing panel for level 3 with its engine 
-        }
-        else if (level == 4){
-            WorkInProgress4.levelFour();
-            runLevel();
-            //code to run drawing panel for level 4 with its engine 
-        }
-    }
-
+    
     public static void levelMenu() {
         /**
          * Shows the  user level menu commands and prompts them for input.
@@ -196,6 +119,95 @@ public class MainMenu {
             }
         }
     }
+
+    public static void levelSelection(int level){
+        /**
+         * Starts a level based on parameter value given.
+         */
+        if (level == 1){           
+            //code to run drawing panel for level 1 with its engine
+            // need to copy working panel and graphics to physics
+            WorkInProgress.level1();
+            Physics.currentLevel = level;
+            Physics.workingPanel = WorkInProgress.panel;
+            Physics.workingGraphics = WorkInProgress.g;
+            runLevel(level); 
+        }
+        else if (level == 2){
+            WorkInProgress2.levelTwo();
+            runLevel(level);
+            //code to run drawing panel for level 2 with its engine 
+        }
+        else if (level == 3){
+            WorkInprogress3.levelThree();
+            runLevel(level);
+            //code to run drawing panel for level 3 with its engine 
+        }
+        else if (level == 4){
+            WorkInProgress4.levelFour();
+            runLevel(level);
+            //code to run drawing panel for level 4 with its engine 
+        }
+    }
+
+    public static void runLevel(int level) {
+        boolean userInLevelLoop = true;
+        while (userInLevelLoop) {
+            try {
+                //physics input
+                System.out.print("Enter angle: ");
+                Physics.inputAngle = (double) console.nextDouble();
+                System.out.print("Enter velocity: ");
+                Physics.inputVelocity = (double) console.nextDouble();
+
+                //draws panel and projected trajactory
+                Physics.workingPanel.clear();
+                //chooses level specific panel
+                if (Physics.currentLevel == 1) WorkInProgress.level1();
+                if (Physics.currentLevel == 2) WorkInProgress2.levelTwo();
+                if (Physics.currentLevel == 3) WorkInprogress3.levelThree();
+                if (Physics.currentLevel == 4) WorkInProgress4.levelFour();
+                Physics.tradjectTest();
+
+                userInLevelLoop = levelRunConfirmation(level);
+            
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input type for velocity or angle. Please enter a numeric value.");
+                console.nextLine();//need this to prevent infinite loop. 
+            }
+        }
+
+    }
+    
+    public static boolean levelRunConfirmation(int level) {
+        //loop for confirmation
+        while (true){
+            System.out.print("Confirm this trajectory? Yes/No: ");
+            String confirmation = (console.next().toLowerCase());
+            if (confirmation.equals("yes")){
+                
+                //draw level based on level number
+                Physics.workingPanel.clear();
+                if (Physics.currentLevel == 1) WorkInProgress.level1();
+                if (Physics.currentLevel == 2) WorkInProgress2.levelTwo();
+                if (Physics.currentLevel == 3) WorkInprogress3.levelThree();
+                if (Physics.currentLevel == 4) WorkInProgress4.levelFour();
+
+                Physics.play(); //takes level number as parameter and then in physics uses this parameter to determine what collision to use
+                System.out.println();
+                return false;//stops user in level loop
+            }else if (confirmation.equals("no")){
+                //loop back
+                System.out.println("Alright, lets try again.");
+                break;
+            }
+            else{
+                System.out.println("Invalid confirmation command. Try again.");
+            }
+        }
+                return true;
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
         /**
          * Main method which runs the app.
