@@ -46,14 +46,16 @@ public class Physics {
             workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
             workingPanel.sleep(1);
             workingGraphics.fillOval((int)rx, levelHeight - (int)ry, dotSize, dotSize);
-
-            // check for collision (dumb method)
-            chooseLevelC();
+            
+            
 
             rx += Vx * deltaT;
             ry += Vy * deltaT + (G * Math.pow(deltaT, 2)) / 2;
             Vy += G * deltaT; // update vertical velocity do to G
-
+            
+            // check for collision (dumb method)
+            chooseLevelC();
+            
             inbound = (rx > 0 && ry < levelHeight && ry > 0);
             if (!inbound) {
                 // set a levelFailed flag to true
