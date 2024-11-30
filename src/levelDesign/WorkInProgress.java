@@ -7,23 +7,10 @@ public class WorkInProgress {
     public static Graphics g = panel.getGraphics();
 
     public static void level1() {
-        DrawingPanel panel = new DrawingPanel(800, 400); // panel size
-        Graphics g = panel.getGraphics();
-
 
         Rectangle rectangle1 = new Rectangle(350, 200, 100, 700);
-
-
-
-
-
-
-        g.clearRect(0, 0, panel.getWidth(), panel.getHeight()); // background can be changed
-
-
-
+        g.clearRect(0, 0, panel.getWidth(), panel.getHeight()); // background can be change
         rectangle1.draw(g);
-
     }
 }
 
