@@ -11,7 +11,15 @@ package physics;
  *  THIS CLASS REFERENCES AppTest FOR ITS MAIN CLASS
  */
 import java.awt.*;
+import java.io.File;
+
+import AudioANDfailScreen.AudioPF;
+import AudioANDfailScreen.FailedPassScreen;
 import levelDesign.*;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class Physics {
     private static final double G = -9.8; // gravity = 9.81 m/s
@@ -42,6 +50,15 @@ public class Physics {
         workingGraphics.setColor(Color.CYAN);
     
         boolean inbound = true;
+
+        // boolean flags
+        boolean levelFailed = false;
+        boolean levelClear = false;
+
+        // instances
+        FailedPassScreen f = new FailedPassScreen();
+        AudioPF a = new AudioPF();
+
         while (inbound) {
             workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
             workingPanel.sleep(1);
@@ -57,10 +74,21 @@ public class Physics {
             inbound = (rx > 0 && ry < levelHeight && ry > 0);
             if (!inbound) {
                 // set a levelFailed flag to true
+                levelFailed = true;
+                if(levelFailed){
+                    f.fail(); // screen
+                    a.fail(); // sfx
+                }
                 break;
             }
             if (rx > levelWidth) {
                 // set a levelClear flag to true
+
+                levelClear = true;
+                if(levelClear){
+                    f.clear(); // screen
+                    a.pass(); // sfx
+                }
                 break;
             }
         }
