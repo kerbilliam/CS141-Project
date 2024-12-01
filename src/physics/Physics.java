@@ -11,15 +11,11 @@ package physics;
  *  THIS CLASS REFERENCES AppTest FOR ITS MAIN CLASS
  */
 import java.awt.*;
-import java.io.File;
 
 import AudioANDfailScreen.AudioPF;
 import AudioANDfailScreen.FailedPassScreen;
 import levelDesign.*;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 public class Physics {
     private static final double G = -9.8; // gravity = 9.81 m/s
@@ -60,7 +56,7 @@ public class Physics {
             AudioPF a = new AudioPF();
     
             while (inbound) {
-                workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
+                // workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
                 workingPanel.sleep(1);
                 workingGraphics.fillOval((int)rx, levelHeight - (int)ry, dotSize, dotSize);
                 
@@ -116,6 +112,7 @@ public class Physics {
         }
     }
 
+    // give a 5 pixel buffer
     private static void level1Collision() {
         // hits left side of block
         if ((rx > 350 && levelHeight - ry > 200) && (rx < 355)) Vx = -Vx;
@@ -127,6 +124,19 @@ public class Physics {
     }
 
     private static void level2Collision() {
+        // rectangle 1
+        // hits left side of bottom block
+        if ((rx > 350 && levelHeight - ry > 200) && (rx < 353)) Vx = -Vx;
+        // hits top of bottom block
+        if ((rx > 350 && levelHeight - ry > 200) && (rx < 450) && levelHeight - ry < 205) Vy = -Vy;
+        // hits right of bottom block
+        if ((rx < 450 && levelHeight - ry > 200) && (rx > 445)) Vx = -Vx;
+
+        // rectangle 2
+        // hits left side of top block
+        if ((rx > 550 && levelHeight - ry < 200) && (rx < 555)) Vx = -Vx;
+        // hits bottom of top block, shouldn't be possible so i stopped trying
+        // if ((rx > 550 && levelHeight - ry < 200) && (rx < 650) && levelHeight - ry < 205) Vy = -Vy;
 
     }
 

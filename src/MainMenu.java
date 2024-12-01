@@ -140,9 +140,9 @@ public class MainMenu {
         }
         else if (level == 2){
             WorkInProgress2.levelTwo();
-            // Physics.currentLevel = level;
-            // Physics.workingPanel = WorkInProgress.panel;
-            // Physics.workingGraphics = WorkInProgress.g;
+            Physics.currentLevel = level;
+            Physics.workingPanel = WorkInProgress2.panel;
+            Physics.workingGraphics = WorkInProgress2.g;
             runLevel(level);
             //code to run drawing panel for level 2 with its engine 
         }
