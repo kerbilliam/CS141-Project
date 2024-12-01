@@ -16,7 +16,7 @@ import javax.sound.sampled.Clip;
 public class MainMenu {    
     public static Scanner console = new Scanner(System.in); //only one scanner object for whole app since when closing a scanner its input stream(System.in) closes for the whole app
     //creates an array which would store the current user's save data
-    public static String[] currentSaveFile = new String[9];
+    public static String[] currentSaveFile = new String[5];
     public static List<String[]> saveFiles = new ArrayList<String[]>();
     //position of the array save in saves file 
     public static int saveFilePosition = -1;
@@ -45,7 +45,7 @@ public class MainMenu {
                 saveFiles = fileModule.readFromFile(); //gets save datas
                 boolean saveFileFound = false;
                 while (!saveFileFound) {
-                    String[] tempSaveFile = new String[9]; //used to unpack each element of the list to check for the save data name
+                    String[] tempSaveFile = new String[5]; //used to unpack each element of the list to check for the save data name
                     for (int i = 0; i < saveFiles.size(); i++){
                         tempSaveFile = saveFiles.get(i);
                         if (tempSaveFile[0].equals(userName)){//if save data with user name exists
@@ -63,13 +63,10 @@ public class MainMenu {
                     //if cant find create a new array with the username and store it in the file
                     currentSaveFile[0] = userName;
                     currentSaveFile[1] = "Incomplete";  //level 1
-                    currentSaveFile[2] = "0";   //level 1 score
-                    currentSaveFile[3] = "Incomplete";  //level 2
-                    currentSaveFile[4] = "0"; //level 2 score
-                    currentSaveFile[5] = "Incomplete";  //level 3
-                    currentSaveFile[6] = "0"; //level 3 score
-                    currentSaveFile[7] = "Incomplete";  //level 4
-                    currentSaveFile[8] = "0"; //level 4 score
+                    currentSaveFile[2] = "Incomplete";  //level 2
+                    currentSaveFile[3] = "Incomplete";  //level 3
+                    currentSaveFile[4] = "Incomplete";  //level 4
+                    
                     saveFileFound = true; //stops the loop
                     System.out.println("Save file created succesfully.");
                     }
@@ -143,16 +140,25 @@ public class MainMenu {
         }
         else if (level == 2){
             WorkInProgress2.levelTwo();
+            // Physics.currentLevel = level;
+            // Physics.workingPanel = WorkInProgress.panel;
+            // Physics.workingGraphics = WorkInProgress.g;
             runLevel(level);
             //code to run drawing panel for level 2 with its engine 
         }
         else if (level == 3){
             WorkInprogress3.levelThree();
+            // Physics.currentLevel = level;
+            // Physics.workingPanel = WorkInProgress.panel;
+            // Physics.workingGraphics = WorkInProgress.g;
             runLevel(level);
             //code to run drawing panel for level 3 with its engine 
         }
         else if (level == 4){
             WorkInProgress4.levelFour();
+            // Physics.currentLevel = level;
+            // Physics.workingPanel = WorkInProgress.panel;
+            // Physics.workingGraphics = WorkInProgress.g;
             runLevel(level);
             //code to run drawing panel for level 4 with its engine 
         }
@@ -200,8 +206,13 @@ public class MainMenu {
                 if (Physics.currentLevel == 2) WorkInProgress2.levelTwo();
                 if (Physics.currentLevel == 3) WorkInprogress3.levelThree();
                 if (Physics.currentLevel == 4) WorkInProgress4.levelFour();
+                
+                //if user passes the level play() returns true 
+                boolean levelStatus = Physics.play();
+                if (levelStatus == true){ //updates save data status of level 
+                    currentSaveFile[level] = "Complete";
+                }
 
-                Physics.play(); //takes level number as parameter and then in physics uses this parameter to determine what collision to use
                 System.out.println();
                 return false;//stops user in level loop
             }else if (confirmation.equals("no")){
@@ -248,7 +259,7 @@ public class MainMenu {
         //User login prompt
         userLogin(console);
 
-        System.out.println("\nWelcome to Angry Birds Clone!\n" + commandMenu);
+        System.out.println("\nWelcome to Trajectory-Optimized Avian Kinetics Simulator!\n" + commandMenu);
         //main menu loop
         while (!exitProgram){
             try {

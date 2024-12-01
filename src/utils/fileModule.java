@@ -11,7 +11,7 @@ public class fileModule {
 		 */
 		PrintStream output = new PrintStream(new FileOutputStream("save_files.txt", true));//appends a new save file.
 		for (int i = 0; i < saveFile.length; i++){
-			if (i == 8){
+			if (i == 4){
 				output.print(saveFile[i]+"\n"); //stores the last element without space
 			} else{
 				output.print(saveFile[i] + " ");
@@ -30,11 +30,11 @@ public class fileModule {
 		//this functions overwrites the whole save file. It's inefficient but works.
 		PrintStream output = new PrintStream(new File("save_files.txt"));
 		for(int i = 0; i <saveFiles.size(); i++){
-			String[] saveFile = new String[9]; //used to unpack each element of the list
+			String[] saveFile = new String[5]; //used to unpack each element of the list
 			saveFile = saveFiles.get(i);
 			//writes save file into single line
 			for (int j = 0; j < saveFile.length; j++){
-				if (j == 8){
+				if (j == 4){
 					output.print(saveFile[j]+"\n"); //stores the last element without space
 				} else{
 					output.print(saveFile[j] + " ");

@@ -3,11 +3,10 @@ package levelDesign;
 import java.awt.*;
 
 public class WorkInProgress2 {
+    public static DrawingPanel panel = new DrawingPanel(800, 400); // panel size
+    public static Graphics g = panel.getGraphics();
+
     public static void levelTwo() {
-        DrawingPanel panel = new DrawingPanel(800, 400); // panel size
-        Graphics g = panel.getGraphics();
-
-
         Rectangle rectangle1 = new Rectangle(350, 200, 100, 700);
         Rectangle rectangle2 = new Rectangle(550, 0,100,200);
 
