@@ -8,17 +8,20 @@ We wanted to see what would happen when combining elements of math, design, and 
 Keeping it simple, we opted for a command lined styled programming for the menu, as well as the Java drawing panel for the graphics. We also decided on adding "failed" and "pass" screens along with audio to the application which can be heard when in the menu of the game, and when the user either cleared or failed the levels. Furthermore, we decided on a username system, which saved the information of the user, allowing the user to see their progress when logging onto the game and saving it when logging off.  
 
 ## Features
-> User log-in system,
-> Audio,
-> Implementation of physics in drawing panel.
+1. User log-in system
+2. Audio
+3. Implementation of physics in drawing panel.
 
 ## HOW TO DOWNLOAD
 
 ## CREDITS 
-William Moore - Physics, Level Design
-Danil Nahiluk - Main Menu
-Lucas Schuetz - Level Design
-Caden Duong - Audio, Level Design
+1. William Moore - Physics, Level Design
+
+2. Danil Nahiluk - Main Menu
+
+3. Lucas Schuetz - Level Design
+
+4. Caden Duong - Audio, Level Design
 
 ## Dependency Management
 
