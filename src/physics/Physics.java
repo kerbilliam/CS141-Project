@@ -38,50 +38,51 @@ public class Physics {
     public static Graphics workingGraphics;
 
     public static int currentLevel;
-
-
-    public static void play() {
-        double angleRAD = inputAngle * Math.PI / 180;
-        rx = 0; // reset x position
-        ry = 0; // reset y position
-        Vx = inputVelocity * Math.cos(angleRAD); // initial x velocity
-        Vy = inputVelocity * Math.sin(angleRAD); // initial y velocity
-
-        workingGraphics.setColor(Color.CYAN);
+    public static boolean levelCompletion;
     
-        boolean inbound = true;
-
-        // boolean flags
-        boolean levelFailed = false;
-        boolean levelClear = false;
-
-        // instances
-        FailedPassScreen f = new FailedPassScreen();
-        AudioPF a = new AudioPF();
-
-        while (inbound) {
-            workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
-            workingPanel.sleep(1);
-            workingGraphics.fillOval((int)rx, levelHeight - (int)ry, dotSize, dotSize);
-            
-            
-
-            rx += Vx * deltaT;
-            ry += Vy * deltaT + (G * Math.pow(deltaT, 2)) / 2;
-            Vy += G * deltaT; // update vertical velocity do to G
-            
-            // check for collision (dumb method)
-            chooseLevelC();
-            
-            inbound = (rx > 0 && ry < levelHeight && ry > 0);
-            if (!inbound) {
-                // set a levelFailed flag to true
-                levelFailed = true;
-                if(levelFailed){
-                    f.fail(); // screen
-                    a.fail(); // sfx
-                }
-                break;
+        public static boolean play() {
+            double angleRAD = inputAngle * Math.PI / 180;
+            rx = 0; // reset x position
+            ry = 0; // reset y position
+            Vx = inputVelocity * Math.cos(angleRAD); // initial x velocity
+            Vy = inputVelocity * Math.sin(angleRAD); // initial y velocity
+    
+            workingGraphics.setColor(Color.CYAN);
+        
+            boolean inbound = true;
+    
+            // boolean flags
+            boolean levelFailed = false;
+            boolean levelClear = false;
+    
+            // instances
+            FailedPassScreen f = new FailedPassScreen();
+            AudioPF a = new AudioPF();
+    
+            while (inbound) {
+                workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
+                workingPanel.sleep(1);
+                workingGraphics.fillOval((int)rx, levelHeight - (int)ry, dotSize, dotSize);
+                
+                
+    
+                rx += Vx * deltaT;
+                ry += Vy * deltaT + (G * Math.pow(deltaT, 2)) / 2;
+                Vy += G * deltaT; // update vertical velocity do to G
+                
+                // check for collision (dumb method)
+                chooseLevelC();
+                
+                inbound = (rx > 0 && ry < levelHeight && ry > 0);
+                if (!inbound) {
+                    // set a levelFailed flag to true
+                    levelFailed = true;
+                    if(levelFailed){
+                        f.fail(); // screen
+                        a.fail(); // sfx
+                    }
+                    levelCompletion = false; //var for savedata
+                    return levelCompletion;
             }
             if (rx > levelWidth) {
                 // set a levelClear flag to true
@@ -91,10 +92,12 @@ public class Physics {
                     f.clear(); // screen
                     a.pass(); // sfx
                 }
-                break;
+                levelCompletion = true; //var for savedata
+                return levelCompletion;
             }
         }
 
+        return levelCompletion;
     }
 
     public static void tradjectTest() {

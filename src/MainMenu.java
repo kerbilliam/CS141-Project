@@ -140,16 +140,25 @@ public class MainMenu {
         }
         else if (level == 2){
             WorkInProgress2.levelTwo();
+            // Physics.currentLevel = level;
+            // Physics.workingPanel = WorkInProgress.panel;
+            // Physics.workingGraphics = WorkInProgress.g;
             runLevel(level);
             //code to run drawing panel for level 2 with its engine 
         }
         else if (level == 3){
             WorkInprogress3.levelThree();
+            // Physics.currentLevel = level;
+            // Physics.workingPanel = WorkInProgress.panel;
+            // Physics.workingGraphics = WorkInProgress.g;
             runLevel(level);
             //code to run drawing panel for level 3 with its engine 
         }
         else if (level == 4){
             WorkInProgress4.levelFour();
+            // Physics.currentLevel = level;
+            // Physics.workingPanel = WorkInProgress.panel;
+            // Physics.workingGraphics = WorkInProgress.g;
             runLevel(level);
             //code to run drawing panel for level 4 with its engine 
         }
@@ -197,8 +206,13 @@ public class MainMenu {
                 if (Physics.currentLevel == 2) WorkInProgress2.levelTwo();
                 if (Physics.currentLevel == 3) WorkInprogress3.levelThree();
                 if (Physics.currentLevel == 4) WorkInProgress4.levelFour();
+                
+                //if user passes the level play() returns true 
+                boolean levelStatus = Physics.play();
+                if (levelStatus == true){ //updates save data status of level 
+                    currentSaveFile[level] = "Complete";
+                }
 
-                Physics.play(); //takes level number as parameter and then in physics uses this parameter to determine what collision to use
                 System.out.println();
                 return false;//stops user in level loop
             }else if (confirmation.equals("no")){
