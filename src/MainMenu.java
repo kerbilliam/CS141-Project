@@ -231,7 +231,7 @@ public class MainMenu {
     public static void main(String[] args) throws FileNotFoundException, UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         // audio!!
-        File file = new File("src/AudioANDfailScreen/Angry Birds Theme Song.wav");
+        File file = new File("src/AudioANDfailScreen/running.wav");
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
         Clip clip = AudioSystem.getClip();
         clip.open(audioStream);

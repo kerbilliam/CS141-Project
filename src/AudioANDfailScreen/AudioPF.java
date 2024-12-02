@@ -10,13 +10,13 @@ public class AudioPF {
     public AudioPF() {
         try {
             // Pre-load pass sound
-            File passFile = new File("src/AudioANDfailScreen/Pokemon Level Up - Sound Effect SFX.wav");
+            File passFile = new File("src/AudioANDfailScreen/levelClear.wav");
             AudioInputStream passStream = AudioSystem.getAudioInputStream(passFile);
             passClip = AudioSystem.getClip();
             passClip.open(passStream);
 
             // Pre-load fail sound
-            File failFile = new File("src/AudioANDfailScreen/Spongebob - disappointed sound effect.wav");
+            File failFile = new File("src/AudioANDfailScreen/fail.wav");
             AudioInputStream failStream = AudioSystem.getAudioInputStream(failFile);
             failClip = AudioSystem.getClip();
             failClip.open(failStream);
