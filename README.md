@@ -26,12 +26,25 @@ Extract the downloaded ZIP file to your desired location.
 
 To clone the project using Git, follow these steps:
 
-Copy the repository URL from the Code button (e.g., https://github.com/username/repository.git).
+Copy the repository URL (e.g., https://github.com/kerbilliam/CS141-Project.git).
 
-Open your terminal or command prompt and navigate to the directory where you want to store the project
-.
-Run the following command (put the link you copied instead):
-git clone git clone [[https://github.com/username/repository.git](https://github.com/kerbilliam/CS141-Project.git)](https://github.com/kerbilliam/CS141-Project.git)
+Open your terminal or command prompt.
+
+Navigate to the desired directory:
+
+cd path/to/directory
+
+Run the git clone command:
+
+git clone https://github.com/kerbilliam/CS141-Project.git
+
+Navigate into the cloned repository:
+
+cd CS141-Project
+
+Verify the files:
+
+ls # or `dir` on Windows
 
 ## CREDITS 
 1. William Moore - Physics, Level Design
