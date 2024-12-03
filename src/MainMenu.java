@@ -224,7 +224,7 @@ public class MainMenu {
                 System.out.println("Invalid confirmation command. Try again.");
             }
         }
-        
+
         return true;
     }
 
@@ -245,9 +245,8 @@ public class MainMenu {
         String commandMenu = """
         Command Menu
         1: Levels
-        2: Leaderboard 
-        3: Help
-        4: Exit
+        2: Help
+        3: Exit
         """;
         //Why do we need export? Is it essential? what does it add to the project?
         String helpCommand = """     
@@ -274,15 +273,11 @@ public class MainMenu {
                     System.out.println(commandMenu);
                 }
 
-                else if (user_input == 2){//leaderboard
-                    System.out.println("none");
-                }
-
-                else if (user_input == 3){//help 
+                else if (user_input == 2){//help 
                     System.out.println("\n" + helpCommand);
                 }
 
-                else if (user_input == 4){//quit app
+                else if (user_input == 3){//quit app
                     System.out.println("Thanks for playing!");
                     if(saveFilePosition == -1){//the save data was created during this app instance so we append it
                         fileModule.appendToFile(currentSaveFile);
