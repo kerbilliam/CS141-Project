@@ -224,7 +224,8 @@ public class MainMenu {
                 System.out.println("Invalid confirmation command. Try again.");
             }
         }
-                return true;
+        
+        return true;
     }
 
     
