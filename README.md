@@ -13,16 +13,13 @@ Keeping it simple, we opted for command-lined styled programming for the menu an
 3. Implementation of physics in drawing panel.
 
 ## HOW TO DOWNLOAD
-Option 1: Download the ZIP File
-
+>Download the ZIP File
 Visit the project repository on GitHub.
 Click the green Code button at the top-right corner of the repository page.
 Select Download ZIP.
 Extract the downloaded ZIP file to your desired location.
-Option 2: Clone the Repository
-
+>Clone the Repository
 To clone the project using Git, follow these steps:
-
 Copy the repository URL from the Code button (e.g., https://github.com/username/repository.git).
 Open your terminal or command prompt and navigate to the directory where you want to store the project.
 Run the following command (put the link you copied instead):
