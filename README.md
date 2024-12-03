@@ -49,7 +49,7 @@ ls # or `dir` on Windows
 ## CREDITS 
 1. William Moore - Physics, Level Design
 
-2. Danil Nahiluk - Main Menu, Save Data System, Utilities
+2. Daniil Nahliuk - Main Menu, Save Data System, Utilities
 
 3. Lucas Schuetz - Level Design
 
