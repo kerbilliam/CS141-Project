@@ -13,7 +13,7 @@ Keeping it simple, we opted for command-lined styled programming for the menu an
 3. Implementation of physics in drawing panel.
 
 ## HOW TO DOWNLOAD
-1.Download the ZIP File
+# (Method 1) Download the ZIP File
 Visit the project repository on GitHub.
 
 Click the green Code button at the top-right corner of the repository page.
@@ -22,7 +22,7 @@ Select Download ZIP.
 
 Extract the downloaded ZIP file to your desired location.
 
-2.Clone the Repository
+# (Method 2) Clone the Repository Using Git
 
 To clone the project using Git, follow these steps:
 
@@ -47,7 +47,7 @@ Verify the files:
 ls # or `dir` on Windows
 
 ## CREDITS 
-1. William Moore - Physics, Level Design
+1. William Moore - Physics, Level Design, SFX (fail, levelClear, running)
 
 2. Daniil Nahliuk - Main Menu, Save Data System, Utilities
 
