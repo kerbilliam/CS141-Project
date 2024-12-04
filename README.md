@@ -53,7 +53,7 @@ ls # or `dir` on Windows
 
 3. Lucas Schuetz - Level Design
 
-4. Caden Duong - Audio, Level Design
+4. Caden Duong - Audio (Implemented Fail/Clear SFX), Level Design (Fail/Clear Screens), Documentation
 
 ## Dependency Management
 
