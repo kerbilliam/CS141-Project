@@ -148,17 +148,17 @@ public class MainMenu {
         }
         else if (level == 3){
             WorkInprogress3.levelThree();
-            // Physics.currentLevel = level;
-            // Physics.workingPanel = WorkInProgress.panel;
-            // Physics.workingGraphics = WorkInProgress.g;
+            Physics.currentLevel = level;
+            Physics.workingPanel = WorkInprogress3.panel; // P in 'progress' is not capital...
+            Physics.workingGraphics = WorkInprogress3.g;
             runLevel(level);
             //code to run drawing panel for level 3 with its engine 
         }
         else if (level == 4){
             WorkInProgress4.levelFour();
-            // Physics.currentLevel = level;
-            // Physics.workingPanel = WorkInProgress.panel;
-            // Physics.workingGraphics = WorkInProgress.g;
+            Physics.currentLevel = level;
+            Physics.workingPanel = WorkInProgress4.panel;
+            Physics.workingGraphics = WorkInProgress4.g;
             runLevel(level);
             //code to run drawing panel for level 4 with its engine 
         }

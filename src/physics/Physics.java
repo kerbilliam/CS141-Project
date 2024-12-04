@@ -141,11 +141,49 @@ public class Physics {
     }
 
     private static void level3Collision() {
+        // rectangle 1 bottom
+        // hits left side of block
+        if ((rx > 350 && levelHeight - ry > 200) && (rx < 355)) Vx = -Vx;
+        // hits top of block
+        if ((rx > 350 && levelHeight - ry > 200) && (rx < 450) && levelHeight - ry < 205) Vy = -Vy;
+        // hits right of bottom block
+        if ((rx < 450 && levelHeight - ry > 200) && (rx > 445)) Vx = -Vx;
+        
+        // rectangle 2 top
+        // hits left side of top block
+        if ((rx > 350 && levelHeight - ry < 150) && (rx < 355)) Vx = -Vx;
+        // hits bottom of top block
+        if ((rx > 355 && levelHeight - ry < 150) && (rx < 450)) Vy = -Vy;
+        // hits right side of top block
+        if ((rx > 445 && levelHeight - ry < 150) && (rx < 450)) Vx = -Vx;
 
     }
 
     private static void level4Collision() {
+        // rectangle 1 bottom
+        // hits left side of block
+        if ((rx > 350 && levelHeight - ry > 200) && (rx < 352)) Vx = -Vx;
+        // hits top of block
+        if ((rx > 350 && levelHeight - ry > 200) && (rx < 450) && levelHeight - ry < 205) Vy = -Vy;
+        // hits right of bottom block
+        if ((rx < 450 && levelHeight - ry > 200) && (rx > 448)) Vx = -Vx;
+        
+        // rectangle 2 top
+        // hits left side of top block
+        if ((rx > 350 && levelHeight - ry < 150) && (rx < 352)) Vx = -Vx;
+        // hits bottom of top block
+        if ((rx > 351 && levelHeight - ry < 150) && (rx < 449)) Vy = -Vy;
+        // hits right side of top block
+        if ((rx < 450 && levelHeight - ry < 150) && (rx > 448)) Vx = -Vx;
 
+        // rectangle 4 middle (and to the right)
+        // hits left side of block
+        if ((rx > 550 && levelHeight - ry > 75) && (rx < 555) && levelHeight - ry < 275) Vx = -Vx;
+        // hits top of block
+        if ((rx >= 555 && levelHeight - ry > 75) && (rx < 650) && levelHeight - ry < 80) Vy = -Vy;
+        // hits bottom of block (shouldn't be possible to hit bottom)
+        // if ((rx >= 555 && levelHeight - ry < 275) && (rx < 650) && levelHeight - ry > 270) Vy = -Vy;
+        // hits right side of block (shouldn't be possible to hit so I didn't do it...)
     }
 
     private static void chooseLevelC() { // a stupid way to choose level collision method
