@@ -4,70 +4,38 @@ import java.io.IOException;
 import javax.sound.sampled.*;
 
 public class AudioPF {
-    public void pass(){
+    private Clip passClip;
+    private Clip failClip;
+
+    public AudioPF() {
         try {
-            // Load the audio file
-            File file = new File("src/AudioANDfailScreen/Pokemon Level Up - Sound Effect SFX.wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
+            // Pre-load pass sound
+            File passFile = new File("src/AudioANDfailScreen/levelClear.wav");
+            AudioInputStream passStream = AudioSystem.getAudioInputStream(passFile);
+            passClip = AudioSystem.getClip();
+            passClip.open(passStream);
 
-            // Start playing the audio
-            clip.start();
-
-            // Add a LineListener to detect when the clip stops
-            clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    synchronized (clip) {
-                        clip.notify(); // Notify the main thread when playback ends
-                    }
-                }
-            });
-
-            // Wait for the clip to finish playing
-            synchronized (clip) {
-                while (clip.isRunning()) {
-                    clip.wait(); // Wait until playback completes
-                }
-            }
-
-            // Close the clip after playback
-            clip.close();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+            // Pre-load fail sound
+            File failFile = new File("src/AudioANDfailScreen/fail.wav");
+            AudioInputStream failStream = AudioSystem.getAudioInputStream(failFile);
+            failClip = AudioSystem.getClip();
+            failClip.open(failStream);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void fail(){
-        try {
-            // Load the audio file
-            File file = new File("src/AudioANDfailScreen/Spongebob - disappointed sound effect.wav");
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
 
-            // Start playing the audio
-            clip.start();
+    public void pass() {
+        if (passClip != null) {
+            passClip.setFramePosition(0); // Reset to start
+            passClip.start(); // Play
+        }
+    }
 
-            // Add a LineListener to detect when the clip stops
-            clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    synchronized (clip) {
-                        clip.notify(); // Notify the main thread when playback ends
-                    }
-                }
-            });
-
-            // Wait for the clip to finish playing
-            synchronized (clip) {
-                while (clip.isRunning()) {
-                    clip.wait(); // Wait until playback completes
-                }
-            }
-
-            // Close the clip after playback
-            clip.close();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
-            e.printStackTrace();
+    public void fail() {
+        if (failClip != null) {
+            failClip.setFramePosition(0); // Reset to start
+            failClip.start(); // Play
         }
     }
 }
