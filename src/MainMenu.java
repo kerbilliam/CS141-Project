@@ -79,22 +79,22 @@ public class MainMenu {
         /**
          * Shows the  user level menu commands and prompts them for input.
          */
-        //variables
-        
+        //variable for while loop
         boolean exitLevelMenu = false;
-        String levelMenu = """
-        Levels Available
-        1: Level 1
-        2: Level 2
-        3: Level 3
-        4: Level 4
-        5: Exit
-        """;
-
-        System.out.println(levelMenu);
+        
         //level menu loop
         while (!exitLevelMenu){
             try {
+                //variable inside the loop so level status is updated as soon as the user completes a level
+                String levelMenu = "Levels Available\n"+
+                "1: Level 1 (" + currentSaveFile[1] + ")\n" +
+                "2: Level 2 (" + currentSaveFile[2] + ")\n" +
+                "3: Level 3 (" + currentSaveFile[3] + ")\n" +
+                "4: Level 4 (" + currentSaveFile[4] + ")\n" +
+                "5: Exit\n";
+
+                System.out.println(levelMenu);
+                //user input
                 System.out.print("Enter the level command number: ");
                 int user_input = console.nextInt();
 
@@ -107,7 +107,7 @@ public class MainMenu {
                     System.out.println("Selected Level " + user_input);  
                     Physics.currentLevel = user_input; // tell physics class which level is selected
                     levelSelection(user_input);
-                    System.out.println(levelMenu);
+                    continue;
                 }
 
                 else{//for integer which are outside command numbers bound
@@ -243,7 +243,7 @@ public class MainMenu {
         //variables
         boolean exitProgram = false;
         String commandMenu = """
-        Command Menu
+        Commands Menu
         1: Levels
         2: Help
         3: Exit
@@ -259,7 +259,7 @@ public class MainMenu {
         //User login prompt
         userLogin(console);
 
-        System.out.println("\nWelcome to Trajectory-Optimized Avian Kinetics Simulator!\n" + commandMenu);
+        System.out.println("\nWelcome to Trajectory-Optimized Avian Kinetics Simulator!\n\n" + commandMenu);
         //main menu loop
         while (!exitProgram){
             try {
