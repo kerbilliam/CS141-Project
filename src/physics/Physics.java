@@ -51,9 +51,10 @@ public class Physics {
             boolean levelFailed = false;
             boolean levelClear = false;
     
-            // instances
+            // setup audio
             FailedPassScreen f = new FailedPassScreen();
             AudioPF a = new AudioPF();
+            a.ball();
     
             while (inbound) {
                 // workingGraphics.drawString(String.valueOf(Vx) + ", " + String.valueOf(Vy), 0, 100);
