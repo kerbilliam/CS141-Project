@@ -297,6 +297,8 @@ public class MainMenu {
                 console.nextLine();//need this to prevent infinite loop
             }          
         }
+        // close all panels
+        System.exit(0);
         //closes console to prevent leakage
         console.close();
     }
